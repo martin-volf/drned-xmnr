@@ -13,4 +13,5 @@ from drned.fixtures import op
 from drned.fixtures import pytest_addoption
 from drned.fixtures import pytest_generate_tests
 from drned.fixtures import root
+from drned.fixtures import unsorted
 from drned.fixtures import yangpath

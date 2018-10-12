@@ -37,6 +37,8 @@ def pytest_addoption(parser):
                      help="operations to perform")
     parser.addoption("--root", action="store", dest="root",
                      help="select traversal root")
+    parser.addoption("--unsorted", action="store_true", dest="unsorted",
+                     help="do not reorder config files (fnames)"),
     parser.addoption("--use", action="append", dest="use",
                      help="add drned use_xxx parameter")
     parser.addoption("--yangpath", action="append", dest="yangpath",
@@ -151,6 +153,16 @@ def device_raw(request):
 @pytest.yield_fixture(scope=SCOPE)
 def yangpath(request):
     yield request.config.getoption("--yangpath")
+
+
+@pytest.yield_fixture(scope=SCOPE)
+def unsorted(request):
+    option = request.config.getoption("--unsorted")
+    if option is None:
+        yield False
+    else:
+        yield option
+
 
 @pytest.yield_fixture(scope=SCOPE)
 def schema(request):
